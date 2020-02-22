@@ -3,4 +3,11 @@ mkdir NGS_project && cd NGS_project
 #Download_the_data_Set
 wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
 gunzip GSE138485.gz
+###########
+#Creat_project_environment
+conda create -n ngspro python=3.7 
+conda activate ngspro
+############
+#Install_salmon
+conda install -c bioconda salmon
 
