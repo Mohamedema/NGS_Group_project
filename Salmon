@@ -1,0 +1,6 @@
+#Creat_project_dirictory 
+mkdir NGS_project && cd NGS_project
+#Download_the_data_Set
+wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
+gunzip GSE138485.gz
+
