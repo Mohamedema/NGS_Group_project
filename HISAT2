@@ -14,7 +14,7 @@ wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.9
 gunzip Homo_sapiens.GRCh38.99.gtf.gz
 
 ##Create conda environment
-conda create -y --name ngs2pro python=3.7     #Another code: conda create -n pro python=3.7 anaconda
+conda create -y --name ngs2pro python=3.7     #Another code: conda create -n ngs2pro python=3.7 anaconda
 conda activate ngs2pro                        #source activate ngs2pro
 
 ##Install the software
