@@ -1,4 +1,5 @@
-##Download Data-Set 
+##Download Data-Set
+conda install -c bioconda sra-tools
 mkdir -p ~/workstation/fqData && cd ~/workstation/fqData
 wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
 tar -xvf GSE138485_RAW.tar
