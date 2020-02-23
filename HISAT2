@@ -1,0 +1,23 @@
+##Download Data-set 
+mkdir -p ~/workstation/fqData && cd ~/workstation/fqData
+wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
+tar -xvf GSE138485_RAW.tar
+
+##Download Reference genome (GRCh38.p13)
+mkdir -p ~/workstation/sample_data && cd ~/workstation/sample_data 
+wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+gunzip Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+
+##Download Annotation file (GRCh38.p13)
+cd ~/workstation/sample_data
+wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+gunzip Homo_sapiens.GRCh38.99.gtf.gz
+
+##Create conda environment
+conda create -y --name ngs2pro python=3.7
+
+##Install the software
+conda activate ngs2pro
+conda install -c bioconda -y hisat2
+conda install -c bioconda fastqc 
+conda install -c bioconda multiqc
