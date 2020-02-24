@@ -1,5 +1,15 @@
 ##Download Data-Set
 conda install -c bioconda sra-tools
+
+xargs -n1 prefetch < SRR_Acc_List.txt
+
+prefetch $(<SRR_Acc_List.txt)
+echo '/repository/user/main/public/root = "/path/to/download"' > $HOME/.ncbi/user-settings.mkfg
+fastq-dump --split-3 --gzip $(</path_to/SRR_Acc_List.txt)
+
+
+
+
 mkdir -p ~/workstation/fqData && cd ~/workstation/fqData
 wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
 tar -xvf GSE138485_RAW.tar
