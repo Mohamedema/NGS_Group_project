@@ -1,11 +1,9 @@
 ##Download Data-Set
-conda install -c bioconda sra-tools           
-
-prefetch SRA_acc
-fastq-dump file.acc
+conda install -c bioconda sra-tools       #prefetch SRA_acc #fastq-dump file.acc 
 
 mkdir -p ~/workstation/fqData && cd ~/workstation/fqData
-wget "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE138485&format=file"
+nano Data_set.txt    #this file contatin all links of samples
+wget -i Data_set.txt
 
 ##Download Reference genome (GRCh38.p13)
 mkdir -p ~/workstation/sample_data && cd ~/workstation/sample_data 
