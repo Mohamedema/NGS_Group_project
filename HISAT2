@@ -1,6 +1,4 @@
 ##Download Data-Set
-conda install -c bioconda sra-tools       #prefetch SRA_acc #fastq-dump file.acc 
-
 mkdir -p ~/workstation/fqData && cd ~/workstation/fqData
 nano Data_set.txt    #this file contatin all links of samples
 wget -i Data_set.txt
