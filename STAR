@@ -1,1 +1,6 @@
+#Generating genome indexes files using the reference genome sequences (FASTA files) and annotations (GTF file).
+STAR --runMode genomeGenerate --genomeDir #(where to put the indexs) --genomeFastaFiles (reference genome.fa) –sjdbGTFfile (Annotation.GTF)
 
+#Mapping reads to the genome using the genome index files generated in the 1st step, as well as the RNA-seq reads (sequences) 
+#in the form FASTQ files, the output files will be saved in sorted-by-coordinate BAM format.
+STAR --genomeDir (indexes location) --readFilesIn (fastaq files) --outSAMtype BAM SortedByCoordinate
