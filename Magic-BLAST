@@ -1,0 +1,18 @@
+#create and activate conda env
+conda create -y --name ngs python=3.6
+source activate ngs
+
+#download SRAToolkit
+conda install -c bioconda sra-tools
+
+#download data set
+fastq-dump --split-files SRR10509525
+
+#Creat project dirictory
+mkdir /home/hadeer/Desktop/NGS_project && cd /home/hadeer/Desktop/NGS_project
+
+#install magic blast
+conda install -c bioconda -y magicblast
+
+#create blast data base "indixing of the ref step"
+makeblastdb -in GRCh38_latest_genomic.fna -out GRCh38 -parse_seqids -dbtype nucl 
