@@ -1,0 +1,2 @@
+#Using HTSeq-count python script to quantify the number of reads mapped to each gene, the following command will be used
+python -m HTSeq.scripts.count -f bam -r pos <alignment_files> <gff_file> count.txt
