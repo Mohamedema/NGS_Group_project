@@ -33,8 +33,8 @@ for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
 for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
 
 ##Merge the output reports 
-mv ../fqData/*html ./
-mv ../fqData/*zip ./
+mv ../fqData/extracted/*html ./
+mv ../fqData/extracted/*zip ./
 multiqc -z -o . .
 
 ######################################
