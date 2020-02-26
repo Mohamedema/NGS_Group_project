@@ -30,6 +30,7 @@ conda install -c bioconda multiqc
 sudo apt install fastqc                       #Explore the help of FASTQC >>> fastqc -h > fastqc_rep
 mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report
 for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
+for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
 
 ##Merge the output reports 
 mv ../fqData/*html ./
