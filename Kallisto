@@ -1,1 +1,15 @@
 
+
+
+#Download Data-Set
+
+
+#Creat the project environment
+conda create -y --name NgsProj python=3.7 
+conda activate NgsProj
+
+
+#Software install
+
+#install Kallisto 
+conda install -c bioconda -y kallisto
