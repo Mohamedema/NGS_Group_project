@@ -11,9 +11,15 @@ conda activate ngs2pro
 #Install_salmon
 conda install -c bioconda salmon
 ############
+python Seprate_paried_end.py #inhouse_python_script_to_seprate_paried_end_files_written_in_our_repo
+fq1_files=('/home/emam/ngs2/fqData/extracted/forward/*.fq')
+fq2_files=('/home/emam/ngs2/fqData/extracted/reverse/*.fq')
+
+############
 #Index_Human_transcriptome
 ./salmon index -t Homo_sapiens.GRCh38.cds.all.fa -i transcript_index -k 31
 #RNA_quantification
-./salmon quant -i transcript_index/ -l A -1 Non_Tumor_NT_AA_004_1.fq -2 Non_Tumor_NT_AA_004_2.fq --validateMappings -o transcripts_quant
+for ((i=0;i<=${#fq_files[@]};i++)); do 
+./salmon quant -i transcript_index/ -l A -1 ${fq1_files[i]} -2 ${fq2_files[i]} --validateMappings -o transcripts_quant
 
 
