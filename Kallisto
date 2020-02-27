@@ -24,3 +24,13 @@ gene annotation: Homo_sapiens.GRCh38.99.gtf
 ref:Homo_sapiens.GRCh38.dna.toplevel.fa
 
 #Run PseudoAlignment to generate PseudoBAM file
+
+
+# install Samtools
+conda install -y samtools
+
+# Sorting the BAM file
+samtools sort 
+
+# Indexing the BAM file
+samtools index 
