@@ -9,7 +9,7 @@ mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report
 for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
 for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
 
-##Merge the output reports 
+##Run_multi_qc
 mv ../fqData/extracted/*html ./
 mv ../fqData/extracted/*zip ./
 multiqc -z -o . .
