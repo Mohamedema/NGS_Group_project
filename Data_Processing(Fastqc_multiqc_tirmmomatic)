@@ -15,20 +15,16 @@ mv ../fqData/extracted/*zip ./
 multiqc -z -o . .
 
 ######################################
-
+#Kindly_note_that_we_did_not_run_trimmomatic_as_the_sequance_quality_was_34_phred_score_and_it_cost_time_and_space_however_we_wrote_the_reqired_commnad_below
 ##Install the software
 conda activate ngs2pro
 conda install -c bioconda trimmomatic
 
 ##Run Trimmomatic
-mkdir -p ~/ngs2/trimming && cd ~/ngs2/trimming
-f1="$HOME/ngs2/fqData/*.fq.gz"
-f2="$HOME/ngs2/fqData/*.fq.gz"
-newf1="$HOME/ngs2/fqData/extracted/*.trim.fq.gz"
-newf2="$HOME/ngs2/fqData/extracted/*.trim.fq.gz"
-newf1U="$HOME/ngs2/fqData/extracted/*.se.trim.fq.gz"
-newf2U="$HOME/workdir/fqData/extracted/*.se.trim.fq.gz"
+mkdir -p ~/ngs2/fqData/trimming && cd ~/ngs2/fqData/trimming
+fq1_files=('/home/emam/ngs2/fqData/extracted/try/forward/.fq')
+fq2_files=('/home/emam/ngs2/fqData/extracted/try/reverse/.fq')
+for ((i=0;i<=${#fq_files[@]};i++)); do trimmomatic PE ${fq1_files[i]} ${fq2_files[i]} ${fq1_files[i]}_paired1.fq.gz ${fq1_files[i]}_upaired1.fq.gz ${fq2_files[i]}_paried2.fq.gz ${fq2_files[i]}_unparied2.fq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:40:15; done
 
-adap="$CONDA_PREFIX/share/trimmomatic-0.39-1/adapters"
-trimmomatic PE -threads 1 -phred33 -trimlog trimLogFile -summary statsSummaryFile  $f1 $f2 $newf1 $newf1U $newf2 $newf2U \
-ILLUMINACLIP:$adap/TruSeq3-PE.fa:2:30:10:1 SLIDINGWINDOW:4:15 MINLEN:36
+
+
