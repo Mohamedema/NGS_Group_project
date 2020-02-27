@@ -1,0 +1,18 @@
+##Download Data-Set
+mkdir -p ~/ngs2/fqData && cd ~/ngs2/fqData
+nano Data_set.txt    #this file contatin all links of samples
+wget -i Data_set.txt
+
+##Download Reference genome (GRCh38.p13)
+mkdir -p ~/ngs2/sample_data && cd ~/ngs2/sample_data 
+wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+gunzip Homo_sapiens.GRCh38.dna.toplevel.fa.gz
+
+##Download Annotation file (GRCh38.p13)
+cd ~/ngs2/sample_data
+wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
+gunzip Homo_sapiens.GRCh38.99.gtf.gz
+
+##Create conda environment
+conda create -y --name ngs2pro python=3.7     #Another code: conda create -n ngs2pro python=3.7 anaconda
+conda activate ngs2pro                        #source activate ngs2pro
