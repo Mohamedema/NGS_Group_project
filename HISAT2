@@ -1,63 +1,3 @@
-##Download Data-Set
-mkdir -p ~/ngs2/fqData && cd ~/ngs2/fqData
-nano Data_set.txt    #this file contatin all links of samples
-wget -i Data_set.txt
-
-##Download Reference genome (GRCh38.p13)
-mkdir -p ~/ngs2/sample_data && cd ~/ngs2/sample_data 
-wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
-gunzip Homo_sapiens.GRCh38.dna.toplevel.fa.gz
-
-##Download Annotation file (GRCh38.p13)
-cd ~/ngs2/sample_data
-wget ftp://ftp.ensembl.org/pub/release-99/gtf/homo_sapiens/Homo_sapiens.GRCh38.99.gtf.gz
-gunzip Homo_sapiens.GRCh38.99.gtf.gz
-
-#####################################
-
-##Create conda environment
-conda create -y --name ngs2pro python=3.7     #Another code: conda create -n ngs2pro python=3.7 anaconda
-conda activate ngs2pro                        #source activate ngs2pro
-
-#####################################
-
-##Install the software
-conda activate ngs2pro 
-conda install -c bioconda fastqc 
-conda install -c bioconda multiqc
-
-##Run the FASTQC for each read
-sudo apt install fastqc                       #Explore the help of FASTQC >>> fastqc -h > fastqc_rep
-mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report
-for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
-for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
-
-##Merge the output reports 
-mv ../fqData/extracted/*html ./
-mv ../fqData/extracted/*zip ./
-multiqc -z -o . .
-
-######################################
-
-##Install the software
-conda activate ngs2pro
-conda install -c bioconda trimmomatic
-
-##Run Trimmomatic
-mkdir -p ~/ngs2/trimming && cd ~/ngs2/trimming
-f1="$HOME/ngs2/fqData/*.fq.gz"
-f2="$HOME/ngs2/fqData/*.fq.gz"
-newf1="$HOME/workdir/fqData/*.trim.fq.gz"
-newf2="$HOME/workdir/fqData/*.trim.fq.gz"
-newf1U="$HOME/workdir/fqData/*.se.trim.fq.gz"
-newf2U="$HOME/workdir/fqData/*.se.trim.fq.gz"
-
-adap="$CONDA_PREFIX/share/trimmomatic-0.39-1/adapters"
-trimmomatic PE -threads 1 -phred33 -trimlog trimLogFile -summary statsSummaryFile  $f1 $f2 $newf1 $newf1U $newf2 $newf2U \
-ILLUMINACLIP:$adap/TruSeq3-PE.fa:2:30:10:1 SLIDINGWINDOW:4:15 MINLEN:36
-
-######################################
-
 ##Install Hisat2
 conda activate ngs1
 conda install -c bioconda -y hisat2
@@ -87,5 +27,3 @@ do
         samtools index $BAM
     done
 done
-
-
