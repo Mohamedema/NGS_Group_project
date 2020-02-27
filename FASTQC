@@ -24,10 +24,10 @@ conda install -c bioconda trimmomatic
 mkdir -p ~/ngs2/trimming && cd ~/ngs2/trimming
 f1="$HOME/ngs2/fqData/*.fq.gz"
 f2="$HOME/ngs2/fqData/*.fq.gz"
-newf1="$HOME/workdir/fqData/*.trim.fq.gz"
-newf2="$HOME/workdir/fqData/*.trim.fq.gz"
-newf1U="$HOME/workdir/fqData/*.se.trim.fq.gz"
-newf2U="$HOME/workdir/fqData/*.se.trim.fq.gz"
+newf1="$HOME/ngs2/fqData/extracted/*.trim.fq.gz"
+newf2="$HOME/ngs2/fqData/extracted/*.trim.fq.gz"
+newf1U="$HOME/ngs2/fqData/extracted/*.se.trim.fq.gz"
+newf2U="$HOME/workdir/fqData/extracted/*.se.trim.fq.gz"
 
 adap="$CONDA_PREFIX/share/trimmomatic-0.39-1/adapters"
 trimmomatic PE -threads 1 -phred33 -trimlog trimLogFile -summary statsSummaryFile  $f1 $f2 $newf1 $newf1U $newf2 $newf2U \
