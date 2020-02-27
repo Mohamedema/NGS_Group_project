@@ -10,4 +10,10 @@ conda activate ngs2pro
 ############
 #Install_salmon
 conda install -c bioconda salmon
+############
+#Index_Human_transcriptome
+./salmon index -t Homo_sapiens.GRCh38.cds.all.fa -i transcript_index -k 31
+#RNA_quantification
+./salmon quant -i transcript_index/ -l A -1 Non_Tumor_NT_AA_004_1.fq -2 Non_Tumor_NT_AA_004_2.fq --validateMappings -o transcripts_quant
+
 
