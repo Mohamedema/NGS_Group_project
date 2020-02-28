@@ -22,4 +22,5 @@ fq2_files=('/home/emam/ngs2/fqData/extracted/reverse/*.fq')
 for ((i=0;i<=${#fq_files[@]};i++)); do 
 ./salmon quant -i transcript_index/ -l A -1 ${fq1_files[i]} -2 ${fq2_files[i]} --validateMappings -o transcripts_quant
 
-
+#The result of 64 paired end sample quantification result in the link below:
+https://drive.google.com/file/d/1FumQ6fCyqpiMZO30MY0zHqQhfwmqC39t/view?usp=sharing
