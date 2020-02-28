@@ -15,41 +15,37 @@ RUNLOG=runlog.txt
 READS_DIR=~/workdir/sample_data/
 mkdir bam
 
-fq1_files=('/home/emam/ngs2/fqData/extracted/try/forward/.fq')
-fq2_files=('/home/emam/ngs2/fqData/extracted/try/reverse/.fq')
-for ((i=0;i<=${#fq_files[@]};i++)); do echo ${fq1_files[i]} ${fq2_files[i]}; hisat2 $INDEX -1 ${fq1_files[i]} -2 ${fq2_files[i]} done
-
-
+fq1_files=('/home/emam/ngs2/fqData/extracted/try/forward/.fq')   #forward_means_read_1
+fq2_files=('/home/emam/ngs2/fqData/extracted/try/reverse/.fq')   #reverse_means_read_2
+for ((i=0;i<=${#fq_files[@]};i++))
+do echo ${fq1_files[i]} ${fq2_files[i]}
 BAM=bam/${fq1_files[i]}_${fq2_files[i]}.bam
-hisat2 $INDEX -1 $R1 -2 $R2 | samtools sort > $BAM
+hisat2 $INDEX -1 ${fq1_files[i]} -2 ${fq2_files[i]} | samtools sort > $BAM 
 samtools index $BAM
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-for SAMPLE in HBR UHR;
-do
-    for REPLICATE in 1 2 3;
-    do
-        R1=$READS_DIR/${SAMPLE}_Rep${REPLICATE}*read1.fastq.gz
-        R2=$READS_DIR/${SAMPLE}_Rep${REPLICATE}*read2.fastq.gz
-        BAM=bam/${SAMPLE}_${REPLICATE}.bam
-
-        hisat2 $INDEX -1 $R1 -2 $R2 | samtools sort > $BAM
-        samtools index $BAM
-    done
 done
+
+##################
+
+##Trial_for_two_reads_paired_end_only
+##Indexing
+mkdir -p ~/ngs2/hisat_align/hisatIndex && cd ~/ngs2/hisat_align/hisatIndex
+ln -s ~/ngs2/sample_data/Homo_sapiens.GRCh38.dna.toplevel.fa
+hisat2_extract_splice_sites.py ~/ngs2/sample_data/Homo_sapiens.GRCh38.99.gtf > splicesites.tsv
+hisat2_extract_exons.py ~/ngs2/sample_data/Homo_sapiens.GRCh38.99.gtf > exons.tsv
+hisat2-build -p 1 --ss splicesites.tsv --exon exons.tsv Homo_sapiens.GRCh38.dna.toplevel.fa Homo_sapiens.GRCh38
+
+##Alignment
+
+cd ~/workdir/hisat_align
+R1="$HOME/ngs2/fqData/Non_Tumor_NT_AA_004_1.fq.gz"
+R2="$HOME/ngs2/fqData/Non_Tumor_NT_AA_004_2.fq.gz"
+hisat2 -p 1 -x hisatIndex/chr22_with_ERCC92 --dta --rna-strandness RF -1 $R1 -2 $R2 -S Non_Tumor_NT_AA_004.sam
+
+##install Samtools
+conda install -y samtools
+
+##convert the SAM file into BAM file 
+samtools view -bS Non_Tumor_NT_AA_004.sam > Non_Tumor_NT_AA_004.bam
+
+#convert the BAM file to a sorted BAM file. 
+samtools sort Non_Tumor_NT_AA_004.bam -o Non_Tumor_NT_AA_004_sorted.bam
