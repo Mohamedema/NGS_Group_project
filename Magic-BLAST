@@ -1,6 +1,5 @@
 ##From Donload Data script 
 
-
 #Download Data-Set
 mkdir -p ~/ngs2/fqData && cd ~/ngs2/fqData
 nano Data_subset.txt    #this file contatin all links of samples the 6 samples "12 reads"
@@ -12,12 +11,11 @@ for f in *.gz.1 ; do gunzip "$f" > /home/ngs2/fqData/extracted/"${f%.*}" ; done
 mkdir -p ~/ngs2/sample_data && cd ~/ngs2/sample_data 
 wget ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.toplevel.fa.gz
 gunzip Homo_sapiens.GRCh38.dna.toplevel.fa.gz
-
+#--------------------------------------------------------------------------------------------------------------------------------
 ##Create conda environment
 conda create -y --name ngs2pro python=3.7     #Another code: conda create -n ngs2pro python=3.7 anaconda
 conda activate ngs2pro                        #source activate ngs2pro
----------------------------------------------------------------------------------------------------------------------------------
-
+#---------------------------------------------------------------------------------------------------------------------------------
 ##From Data processing script 
 
 #Install the software
@@ -29,21 +27,25 @@ conda install -c bioconda multiqc
 mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report            
 for f in ~/ngs2/fqData/*.fq.gz;do fastqc -t 1 -f fastq -noextract $f;done
 
-
-
 #Run_multi_qc
 mv ../fqData/extracted/*html ./
 mv ../fqData/extracted/*zip ./
 multiqc -z -o . .
+#-----------------------------------------------------------------------------------------------------------------------------------
+##Alignment using Magic BLAST
 
-##create blast data base "indixing of the ref step"
+##Install magic blast
+conda install -c bioconda -y magicblast
+
+#Create blast data base "indixing of the ref step"
 mkdir -p ~/ngs2/magic_blast/blastIndex && cd ~/ngs2/magic_blast/blastIndex
 ln -s ~/ngs2/sample_data/Homo_sapiens.GRCh38.dna.toplevel.fa .
 makeblastdb -in GRCh38_latest_genomic.fna -out GRCh38 -parse_seqids -dbtype nucl
 
-##Magic BLAST Aligen
+#Alignment step
 cd ~/ngs2/magic_blast
 python Seprate_paried_end.py #inhouse_python_script_to_seprate_paried_end_files_written_in_our_repo
+
 fq1_files=('/home/ngs2/fqData/extracted/forward/*.fq')
 fq2_files=('/home/ngs2/fqData/extracted/reverse/*.fq')
 
@@ -52,6 +54,8 @@ echo ${fq1_files[i]} ${fq2_files[i]};
 name=$({fq1_files[i]} | sed 's/_1.fq//')
 /usr/bin/time magicblast -query ${fq1_files[i]} -query_mate ${fq2_files[i]} -db GRCh38 -paired -out name.sam
 done
+#-----------------------------------------------------------------------------------------------------------------------------------
+##Convert the data to bam files and sort it 
 
 ##install Samtools
 conda install -y samtools
