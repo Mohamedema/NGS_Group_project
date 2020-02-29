@@ -32,11 +32,6 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1009595 (37.68%) aligned exactly 1 time
         62486 (2.33%) aligned >1 times
 95.87% overall alignment rate
-##while running the 2nd sample we faced the below error 
-Error while flushing and closing output
-terminate called after throwing an instance of 'int'
-Aborted (core dumped)
-(ERR): hisat2-align exited with value 134
 ########
 ##install Samtools
 conda install -c bioconda samtools
