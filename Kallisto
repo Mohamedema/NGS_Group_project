@@ -9,7 +9,13 @@ conda install -c bioconda -y kallisto                                          g
 
 mkdir -p ~/workdir/kallisto_align/kallistoIndex && cd ~/workdir/kallisto_align/kallistoIndex
 ln -s ~/workdir/data.set/Homo_sapiens.GRCh38.cds.all.fa
-kallisto index -i  human.idx -k 25 Homo_sapiens.GRCh38.cds.all.fa              
+kallisto index -i  human.idx -k 25 Homo_sapiens.GRCh38.cds.all.fa 
+
+#python Seprate_paried_end.py #inhouse_python_script_to_seprate_paried_end_files_written_in_our_repo
+
+#creat_twovariables_for_the_two_seprated_samples_directory(paired_end_samples)
+fq1_files=('/home/emam/ngs2/fqData/extracted/forward/*.fq')
+fq2_files=('/home/emam/ngs2/fqData/extracted/reverse/*.fq')
 
 # Counting 
 for ((i=0;i<=${#fq_files[@]};i++)); do 
