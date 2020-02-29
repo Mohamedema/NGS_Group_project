@@ -2,16 +2,20 @@
 mkdir NGS_project && cd NGS_project
 #Download_Transcriptome_file
 wget "ftp://ftp.ensembl.org/pub/release-99/fasta/homo_sapiens/cds/"
+#unzipthe_transcriptome_file
 gunzip Homo_sapiens.GRCh38.cds.all.fa.gz 
+
 ###########
 #Creat_project_environment
 conda create -n ngs2pro python=3.7 
+#activate_the_environment
 conda activate ngs2pro
 ############
 #Install_salmon
 conda install -c bioconda salmon
 ############
 python Seprate_paried_end.py #inhouse_python_script_to_seprate_paried_end_files_written_in_our_repo
+#creat_twovariables_for_the_two_seprated_samples_directory(paired_end_samples)
 fq1_files=('/home/emam/ngs2/fqData/extracted/forward/*.fq')
 fq2_files=('/home/emam/ngs2/fqData/extracted/reverse/*.fq')
 
