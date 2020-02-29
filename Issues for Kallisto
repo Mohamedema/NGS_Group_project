@@ -1,2 +1,19 @@
-6 reads are only used (paired-end):
+# 6 reads are only used (paired-end):
+# 3 paired-end samples :
+Non_Tumor_NT_AA_004_1.fq.gz
+Non_Tumor_NT_AA_004_2.fq.gz
+Non_Tumor_NT_BB_005_1.fq.gz
+Non_Tumor_NT_CC_007_1.fq.gz
+Non_Tumor_NT_BB_005_2.fq.gz
+Non_Tumor_NT_CC_007_2.fq.gz
 
+# 3 paired-end samples tumor
+
+Tumor_T_A_004_2.fq.gz
+Tumor_T_A_004_1.fq.gz
+Tumor_T_B_005_1.fq.gz
+Tumor_T_B_005_2.fq.gz
+Tumor_T_C_007_2.fq.gz
+Tumor_T_C_007_1.fq.gz
+
+All of these reads are renamed to be ended without this suffix (fq.gz)
