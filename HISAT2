@@ -126,13 +126,21 @@ for f in *.sam
    
 #####samtools view -bS Non_Tumor_NT_AA_004.sam > Non_Tumor_NT_AA_004.bam
 
-##convert the BAM file to a sorted BAM file. 
+##convert the BAM file to a sorted and indexed BAM file. 
 
 #sort bam files
-cd ~/ngs2/hisat_align/bam
+cd ~/ngs2/magic_blast/bam
 for f in *.bam
+do
+file=$(echo ${f} | sed 's/.bam//')
+samtools sort $file.bam -o $file_sorted.bam
+done
+
+# Index sorted bam files
+for f in *_sorted.bam
 do
    samtools index $f
 done
 
 #####samtools sort Non_Tumor_NT_AA_004.bam -o Non_Tumor_NT_AA_004_sorted.bam
+#####samtools index Non_Tumor_NT_AA_004_sorted.bam
