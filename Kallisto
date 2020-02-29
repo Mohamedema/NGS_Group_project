@@ -1,34 +1,30 @@
 #Software install
 
 #install Kallisto 
-conda install -c bioconda -y kallisto
+conda install -c bioconda -y kallisto                                          gene annotation: Homo_sapiens.GRCh38.99.gtf 
+                                                                               ref: Homo_sapiens.GRCh38.cdna.all.fa
+
 
 #Indexing
 
 mkdir -p ~/workdir/kallisto_align/kallistoIndex && cd ~/workdir/kallisto_align/kallistoIndex
-ln -s ~/workdir/sample_data/Homo_sapiens.GRCh38.dna.toplevel.fa
-kallisto index -i human_pc.idx -k 25 Homo_sapiens.GRCh38.dna.toplevel.fa
-
-gene annotation: Homo_sapiens.GRCh38.99.gtf 
-ref: Homo_sapiens.GRCh38.cdna.all.fa.gtf
-
-#Run PseudoAlignment to generate PseudoBAM file
-cd ~/workdir/kallisto_align
-R1="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read1.fastq.gz"
-R2="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read2.fastq.gz"
-kallisto quant -i kallistoIndex/human_pc.idx -o human_pc_bam $R1 $R2 --pseudobam
-
-
-# Indexing the BAM file
-kallisto index -i  human.idx -k 25 Homo_sapiens.GRCh38.cds.all.fa
+ln -s ~/workdir/sample_data/Homo_sapiens.GRCh38.cds.all.fa
+kallisto index -i  human.idx -k 25 Homo_sapiens.GRCh38.cds.all.fa              
 
 # Counting
 for ((i=0;i<=${#fq_files[@]};i++)); do 
 kallisto quant -i human.idx -o ${fq1_files[i]}+${fq2_files[i]}    ${fq1_files[i]}  ${fq2_files[i]}
 
 
+####################################################################################################
 
 Another Method:
+
+#Run PseudoAlignment to generate PseudoBAM file
+cd ~/workdir/kallisto_align
+R1="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read1.fastq.gz"
+R2="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read2.fastq.gz"
+kallisto quant -i kallistoIndex/human_pc.idx -o human_pc_bam $R1 $R2 --pseudobam
 
 samtools index 
 
