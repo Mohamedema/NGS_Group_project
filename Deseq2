@@ -19,6 +19,7 @@ library(htmltools)
 #install_DESeq2
 source("https://bioconductor.org/biocLite.R")
 biocLite("DESeq2")
+install.packages("tidyverse")
 #activate_DESeq2
 library( "DESeq2" )
 library(ggplot2)
