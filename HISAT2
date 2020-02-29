@@ -151,4 +151,5 @@ done
 #####samtools sort Non_Tumor_NT_AA_004.bam -o Non_Tumor_NT_AA_004_sorted.bam
 #####samtools index Non_Tumor_NT_AA_004_sorted.bam
 #creat_count_table
+conda install -c bioconda subread 
 featureCounts -a /home/emam/ngs2/sample_data/Homo_sapiens.GRCh38.99.gtf -g gene_name  -o counts.txt /home/emam/Desktop/Non_Tumor_NT_AA_004_sorted.bam.bai /home/emam/Desktop/Non_Tumor_NT_AA_004_sorted.bam.bai 
