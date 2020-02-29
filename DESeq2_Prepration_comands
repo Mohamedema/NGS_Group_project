@@ -24,6 +24,7 @@ install.packages("tidyverse")
 library( "DESeq2" )
 library(ggplot2)
 #################################
-#merging columns from separate files in one file
+#Salmon_and_kallisto_Date_perepration
+#samlmon_out_put_64_sf_files_contain_tpm_value_and_trancript_id_we_used_the_commnad_below_to_merge_the_coloumn_from_different_quant_out_put_file
 cut -f 1 <file name>.tsv >> output.txt
 paste <filename>.txt > outputfile.txt
