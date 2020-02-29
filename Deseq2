@@ -1,15 +1,24 @@
+#activate_conda_envronment
 conda activate ngs2pro
+#install_r_base
 sudo apt-get install r-base
+#download_and_install_rstudio
 sudo apt-get install gdebi
 cd ~/Downloads
 wget https://download1.rstudio.org/rstudio-xenial-1.1.419-amd64.deb
 sudo gdebi rstudio-xenial-1.1.379-amd64.deb
 ###############################
-Open rstudio
+#Open_r_studio
+rstudio
+###############################
+#kindly_note_the_comand_below_is_R_script
+#install_htmltools_package
 install.packages("htmltools")
+#activate_htmltools_package
 library(htmltools)
+#install_DESeq2
 source("https://bioconductor.org/biocLite.R")
 biocLite("DESeq2")
-
+#activate_DESeq2
 library( "DESeq2" )
 library(ggplot2)
