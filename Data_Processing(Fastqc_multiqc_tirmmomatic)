@@ -3,16 +3,14 @@
 #activate_project_conda_environment
 conda activate ngs2pro 
 #install_fastqc&&multiqc
-conda install -c bioconda fastqc 
+conda install -c bioconda fastqc      #Explore the help of FASTQC >>> fastqc -h > fastqc_rep
 conda install -c bioconda multiqc
 
 ##Run the FASTQC for each read
-sudo apt install fastqc                       #Explore the help of FASTQC >>> fastqc -h > fastqc_rep
 #creat_fullpath_for_fastq_result_and_change_dirctory_to_it
 mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report
 #loop_for_all_samples
 for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
-for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
 
 ##Run_multi_qc
 mv ../fqData/extracted/*html ./
