@@ -28,7 +28,6 @@ done
 
 #sort bam files
 cd ~/ngs2/magic_blast/bam
-
 for f in *.bam
 do
    samtools index $f
