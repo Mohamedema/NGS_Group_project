@@ -8,37 +8,14 @@ conda install -c bioconda -y kallisto                                          g
 #Indexing
 
 mkdir -p ~/workdir/kallisto_align/kallistoIndex && cd ~/workdir/kallisto_align/kallistoIndex
-ln -s ~/workdir/sample_data/Homo_sapiens.GRCh38.cds.all.fa
+ln -s ~/workdir/data.set/Homo_sapiens.GRCh38.cds.all.fa
 kallisto index -i  human.idx -k 25 Homo_sapiens.GRCh38.cds.all.fa              
 
-# Counting
+# Counting 
 for ((i=0;i<=${#fq_files[@]};i++)); do 
 kallisto quant -i human.idx -o ${fq1_files[i]}+${fq2_files[i]}    ${fq1_files[i]}  ${fq2_files[i]}
 
 
 ####################################################################################################
-
-Another Method:
-
-#Run PseudoAlignment to generate PseudoBAM file
-cd ~/workdir/kallisto_align
-R1="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read1.fastq.gz"
-R2="$HOME/workdir/sample_data/HBR_Rep1_ERCC-Mix2_Build37-ErccTranscripts-chr22.read2.fastq.gz"
-kallisto quant -i kallistoIndex/human_pc.idx -o human_pc_bam $R1 $R2 --pseudobam
-
-samtools index 
-
-# Run PseudoAlignment to generate PseudoBAM file with Coordinates
-
-ln -s ~/workdir/sample_data/gencode.v29.annotation.gtf .
-kallisto quant -i kallistoIndex/human_pc.idx -o human_pc_bam_gtf $R1 $R2 --genomebam --gtf gencode.v29.annotation.gtf
-
-
-
-# install Samtools
-conda install -y samtools
-
-# Sorting the BAM file
-samtools sort 
 
 
