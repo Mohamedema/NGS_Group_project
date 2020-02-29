@@ -48,6 +48,7 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1246963 (34.53%) aligned exactly 1 time
         117012 (3.24%) aligned >1 times
 95.53% overall alignment rate
+
 ##Result_of_the_third_sample_Non_Tumor_NT_CC
 24293821 reads; of these:
   24293821 (100.00%) were paired; of these:
@@ -64,6 +65,7 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1312162 (35.88%) aligned exactly 1 time
         81818 (2.24%) aligned >1 times
 95.34% overall alignment rate
+
 ##Result_of_the_forth_sample_Tumor_T_A
 29337744 reads; of these:
   29337744 (100.00%) were paired; of these:
@@ -80,6 +82,7 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1502996 (36.62%) aligned exactly 1 time
         134857 (3.29%) aligned >1 times
 95.80% overall alignment rate
+
 ##Result_of_the_fifth_sample_Tumor_T_B
 25498208 reads; of these:
   25498208 (100.00%) were paired; of these:
@@ -96,6 +99,7 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1461664 (33.37%) aligned exactly 1 time
         138957 (3.17%) aligned >1 times
 94.55% overall alignment rate
+
 ##Result_of_the_sixth_sample_Tumor_T_C
 25538304 reads; of these:
   25538304 (100.00%) were paired; of these:
@@ -112,7 +116,9 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1377997 (37.47%) aligned exactly 1 time
         71704 (1.95%) aligned >1 times
 95.64% overall alignment rate
+
 ##################
+
 ##install Samtools
 conda install -c bioconda samtools
 
