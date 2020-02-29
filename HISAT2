@@ -96,8 +96,22 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1461664 (33.37%) aligned exactly 1 time
         138957 (3.17%) aligned >1 times
 94.55% overall alignment rate
-
-
+##Result_of_the_sixth_sample_Tumor_T_C
+25538304 reads; of these:
+  25538304 (100.00%) were paired; of these:
+    1989532 (7.79%) aligned concordantly 0 times
+    22593735 (88.47%) aligned concordantly exactly 1 time
+    955037 (3.74%) aligned concordantly >1 times
+    ----
+    1989532 pairs aligned concordantly 0 times; of these:
+      150542 (7.57%) aligned discordantly 1 time
+    ----
+    1838990 pairs aligned 0 times concordantly or discordantly; of these:
+      3677980 mates make up the pairs; of these:
+        2228279 (60.58%) aligned 0 times
+        1377997 (37.47%) aligned exactly 1 time
+        71704 (1.95%) aligned >1 times
+95.64% overall alignment rate
 ##################
 ##install Samtools
 conda install -c bioconda samtools
