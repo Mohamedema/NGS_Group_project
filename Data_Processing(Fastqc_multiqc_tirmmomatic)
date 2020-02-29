@@ -1,11 +1,16 @@
 ##Install the software
+######################################
+#activate_project_conda_environment
 conda activate ngs2pro 
+#install_fastqc&&multiqc
 conda install -c bioconda fastqc 
 conda install -c bioconda multiqc
 
 ##Run the FASTQC for each read
 sudo apt install fastqc                       #Explore the help of FASTQC >>> fastqc -h > fastqc_rep
+#creat_fullpath_for_fastq_result_and_change_dirctory_to_it
 mkdir -p ~/ngs2/FASTQC_report && cd ~/ngs2/FASTQC_report
+#loop_for_all_samples
 for f in ~/ngs2/fqData/extracted/*.fq;do fastqc -noextract $f;done
 for f in ~/ngs2/fqData/extracted/*.fq;do gunzip -k $f;done
 
@@ -16,8 +21,7 @@ multiqc -z -o . .
 
 ######################################
 #Kindly_note_that_we_did_not_run_trimmomatic_as_the_sequance_quality_was_34_phred_score_and_it_cost_time_and_space_however_we_wrote_the_reqired_commnad_below
-##Install the software
-conda activate ngs2pro
+##Install the trimmomatic
 conda install -c bioconda trimmomatic
 
 ##Run Trimmomatic
