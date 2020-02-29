@@ -19,7 +19,7 @@ R2="$Home/ngs2/fqData/Non_Tumor_NT_AA_004_2.fq.gz"
 hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2 $R2 -S Non_Tumor_NT_AA_004.sam
 
 ##install Samtools
-conda install -y samtools
+conda install -c bioconda samtools
 
 ##convert the SAM file into BAM file
 mkdir ~/ngs2/hisat_align/bam
