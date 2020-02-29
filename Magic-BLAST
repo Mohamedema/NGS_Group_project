@@ -30,5 +30,12 @@ done
 cd ~/ngs2/magic_blast/bam
 for f in *.bam
 do
+file=$(echo ${f} | sed 's/.bam//')
+samtools sort $file.bam -o $file_sorted.bam
+done
+
+# Index sorted bam files
+for f in *_sorted.bam
+do
    samtools index $f
 done
