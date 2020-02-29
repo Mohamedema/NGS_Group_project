@@ -1,0 +1,67 @@
+#load needed libraries 
+library(readr)
+library(DESeq2)
+
+#load the mRNA-Seq count data and filter it to display only the countification column and the transcripts IDs
+data.path="C:/Users/QUEEN/Desktop/NGS/kallisto"
+files <- list.files(path=data.path,recursive=T, pattern = "tsv")
+temp <- read.table(file.path(data.path,files[1]), header=T)
+temp=temp[,-2:-4]
+
+#create a storing object kallisto.exp to save the whole read counts of each file read in an iteration
+kallisto.exp=temp
+rownames(kallisto.exp)=kallisto.exp[,1]
+kallisto.exp=kallisto.exp[-1]
+colnames(kallisto.exp)=c(files) 
+
+for(i in 2: length(files))
+  {
+    # read the next file  
+    temp <- read.table(files[i], header=F)
+    # remove the first column, bec we had it already and other columns to keep only the counts column 
+    temp = temp[,-1:-4]
+  
+    kallisto.exp=cbind(kallisto.exp,temp)
+}
+
+#rename the columns of the dataframe by the sample ID
+colnames(kallisto.exp)=c(files)
+
+#creating the phenotype table
+coldata= as.data.frame(files)
+class <- as.data.frame(factor(rep(c("N","T"), c(3, 3))))
+coldata=cbind(coldata,class)
+colnames(coldata)= c("sampl_id", "condition")
+
+###preparing the data for the deseq2###
+#converting the data format from factor level to numeric so we can round them and 
+#convert them to intger as required by deseq2
+genes=rownames(kallisto.exp)
+kallisto.exp1=lapply(kallisto.exp, function(x) round(as.numeric(as.character(x)))
+kallisto.exp1=apply(round(kallisto.exp1),2,as.integer)
+rownames(kallisto.exp1)=genes
+
+#It is absolutely critical that the columns of the "kallisto.exp" and the rows of the "coldata" 
+#(information about samples) are in the same order, must be provided to DESeq2 already in consistent order.
+rownames(coldata)=coldata$sampl_id
+coldata=coldata[colnames(kallisto.exp),]
+
+# DO the differential EXP analysis using DeSeq2
+condn="N"
+condt="T"
+dds_k = DESeqDataSetFromMatrix( countData = kallisto.exp1 , colData = coldata, design = ~ condition)
+dds_k.run = DESeq(dds_k)
+# direct results or specifying teh contrast (to make a res object based on two specific conditions/treatment)
+res.k=results(dds_k.run, contrast = c("condition",condn, condt))
+# remove nulls
+res.k=as.data.frame(res.k[complete.cases(res.k), ])
+# selection criteria for identifying DEGS : final crietria : pval<0.05 and logFC >2 
+res.dg.k=res.k[res.k$padj< 0.05 & abs(res.k$log2FoldChange)>log2(2),]
+
+# Make a basic volcano plot
+# Add colored points: blue if padj<0.01, red if log2FC>1 and padj<0.05)
+par(mfrow=c(1,1))
+with(res.k, plot(log2FoldChange, -log10(pvalue), pch=20, main="salmon Volcano plot", xlim=c(-3,3)))
+with(subset(res.k, pvalue< 0.05 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
+with(subset(res.k, padj<.05 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
+legend(x=2,y=18,c("padj","pvalue"),cex=.8,col=c("red","blue"),pch=20)
