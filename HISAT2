@@ -32,11 +32,22 @@ hisat2 -p 1 -x ~/ngs2/hisat_align/hisatIndex --dta --rna-strandness RF -1 $R1 -2
         1009595 (37.68%) aligned exactly 1 time
         62486 (2.33%) aligned >1 times
 95.87% overall alignment rate
-##while running the 2nd sample we faced the below error 
-Error while flushing and closing output
-terminate called after throwing an instance of 'int'
-Aborted (core dumped)
-(ERR): hisat2-align exited with value 134
+##Result_of_the_second_sample_Non_Tumor_NT_BB
+25166441 reads; of these:
+  25166441 (100.00%) were paired; of these:
+    1936653 (7.70%) aligned concordantly 0 times
+    21987917 (87.37%) aligned concordantly exactly 1 time
+    1241871 (4.93%) aligned concordantly >1 times
+    ----
+    1936653 pairs aligned concordantly 0 times; of these:
+      130959 (6.76%) aligned discordantly 1 time
+    ----
+    1805694 pairs aligned 0 times concordantly or discordantly; of these:
+      3611388 mates make up the pairs; of these:
+        2247413 (62.23%) aligned 0 times
+        1246963 (34.53%) aligned exactly 1 time
+        117012 (3.24%) aligned >1 times
+95.53% overall alignment rate
 ##Result_of_the_third_sample_Non_Tumor_NT_CC
 24293821 reads; of these:
   24293821 (100.00%) were paired; of these:
@@ -54,7 +65,6 @@ Aborted (core dumped)
         81818 (2.24%) aligned >1 times
 95.34% overall alignment rate
 ##################
-
 ##install Samtools
 conda install -c bioconda samtools
 
