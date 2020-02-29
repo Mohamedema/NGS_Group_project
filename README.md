@@ -69,7 +69,7 @@ Status for each FastQC section showing whether results seem entirely normal (gre
 ![Uploading Picture1.png…]()
 
 
-#Results
+# Results
 At this stage of the study we compared the differential expression between two aligners; kallisto and salmon based on six samples from 64, three control and three liver cancer patient and we will report the results here;
 Salmon has a significant higher number of differentially expressed genes than kallisto as shown in figure (1) and figure (2), both aligners used human transcriptome as a reference. Kindly NOTE we worked on 6 samples out of our proposed 64 paired-end samples, also STAR, Magicblast and HiSat all requested huge memory and time so we were capable of analyzing this section only, although we are committed to analyze the whole study with the other aligners followed by wet-lab experiment validation using real-time PCR for the top DEGs.
 ![18](https://user-images.githubusercontent.com/40475959/75615461-a0b3c700-5b4c-11ea-9a01-cfd3b353719b.PNG)
