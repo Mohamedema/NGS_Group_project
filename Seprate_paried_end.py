@@ -1,7 +1,10 @@
+#Import_library_os_to_use_terminal_and_shutil_to_use_move_function
 import os 
 import shutil
+#creat_two_list_to_add_the_name_of_forward_and_reverse_samples
 forward_read=[]
 revers_read=[]
+#write_the_full_path_of_my_samples
 path='/home/emam/ngs2/fqData/extracted/'
 #change_python_directory_to_fqdatafile(extracted)
 os.chdir(path) 
