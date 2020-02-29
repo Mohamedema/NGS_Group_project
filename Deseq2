@@ -25,5 +25,5 @@ library( "DESeq2" )
 library(ggplot2)
 #################################
 #merging columns from separate files in one file
-cut -f 1 *.tsv >> ovoooo.txt
-paste Non_Tumor_AA.text Non_Tumor_BB_005.text Non_Tumor_NT_CC.text Tumor_T_A_004.text Tumor_T_B_005.text Tumor_T_C_007.txt > outputfile.txt
+cut -f 1 <file name>.tsv >> output.txt
+paste <filename>.txt > outputfile.txt
