@@ -65,3 +65,4 @@ The cumulative percentage count of the proportion of your library which has seen
 Status for each FastQC section showing whether results seem entirely normal (green), slightly abnormal (orange) or very unusual (red).
 
 ![17](https://user-images.githubusercontent.com/33230332/75453204-35b39600-597c-11ea-875b-a0a810b54fda.PNG)
+
