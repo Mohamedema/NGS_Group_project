@@ -54,6 +54,8 @@ echo ${fq1_files[i]} ${fq2_files[i]};
 name=$({fq1_files[i]} | sed 's/_1.fq//')
 /usr/bin/time magicblast -query ${fq1_files[i]} -query_mate ${fq2_files[i]} -db GRCh38 -infmt fastq  -out name.sam
 done
+##Trying to run only one sample 
+/usr/bin/time magicblast -query Non_Tumor_NT_AA_004_1.fq -query_mate Non_Tumor_NT_AA_004_2.fq -db GRCh38 -infmt fastq -out Non_Tumor_NT_AA_004.sam
 #-----------------------------------------------------------------------------------------------------------------------------------
 ##Convert the data to bam files and sort it 
 
