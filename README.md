@@ -66,3 +66,5 @@ Status for each FastQC section showing whether results seem entirely normal (gre
 
 ![17](https://user-images.githubusercontent.com/33230332/75453204-35b39600-597c-11ea-875b-a0a810b54fda.PNG)
 
+![Uploading Picture1.png…]()
+
