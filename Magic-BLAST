@@ -16,7 +16,7 @@ cd ~/ngs2/magic_blast
 ##Convert the data to bam files and sort it 
 
 ##install Samtools
-conda install -y samtools
+conda install -c bioconda samtools
 
 #convert samfiles to bam
 for f in *.sam  
