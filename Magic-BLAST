@@ -52,7 +52,7 @@ fq2_files=('/home/ngs2/fqData/extracted/reverse/*.fq')
 for ((i=0;i<=${#fq_files[@]};i++)); do 
 echo ${fq1_files[i]} ${fq2_files[i]};
 name=$({fq1_files[i]} | sed 's/_1.fq//')
-/usr/bin/time magicblast -query ${fq1_files[i]} -query_mate ${fq2_files[i]} -db GRCh38 -paired -out name.sam
+/usr/bin/time magicblast -query ${fq1_files[i]} -query_mate ${fq2_files[i]} -db GRCh38 -infmt fastq  -out name.sam
 done
 #-----------------------------------------------------------------------------------------------------------------------------------
 ##Convert the data to bam files and sort it 
