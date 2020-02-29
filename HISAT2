@@ -36,10 +36,10 @@ hisat2-build -p 1 --ss splicesites.tsv --exon exons.tsv Homo_sapiens.GRCh38.dna.
 
 ##Alignment
 
-cd ~/workdir/hisat_align
-R1="$HOME/ngs2/fqData/Non_Tumor_NT_AA_004_1.fq.gz"
-R2="$HOME/ngs2/fqData/Non_Tumor_NT_AA_004_2.fq.gz"
-hisat2 -p 1 -x hisatIndex/chr22_with_ERCC92 --dta --rna-strandness RF -1 $R1 -2 $R2 -S Non_Tumor_NT_AA_004.sam
+cd ~/ngs2/hisat_align
+R1="$Home/ngs2/fqData/Non_Tumor_NT_AA_004_1.fq.gz"
+R2="$Home/ngs2/fqData/Non_Tumor_NT_AA_004_2.fq.gz"
+hisat2 -p 1 -x hisatIndex/make_grch38 --dta --rna-strandness RF -1 $R1 -2 $R2 -S Non_Tumor_NT_AA_004.sam
 
 ##install Samtools
 conda install -y samtools
