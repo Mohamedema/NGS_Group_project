@@ -28,3 +28,6 @@ for ((i=0;i<=${#fq_files[@]};i++)); do
 
 #The result of 64 paired end sample quantification result in the link below:
 https://drive.google.com/file/d/1FumQ6fCyqpiMZO30MY0zHqQhfwmqC39t/view?usp=sharing
+#prepration_of_the_tpm_values_to_Desq2
+cut -f 1 <file name>.tsv >> output.txt
+paste <filename>.txt > outputfile.txt
