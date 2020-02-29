@@ -61,7 +61,7 @@ res.dg.k=res.k[res.k$padj< 0.05 & abs(res.k$log2FoldChange)>log2(2),]
 # Make a basic volcano plot
 # Add colored points: blue if padj<0.01, red if log2FC>1 and padj<0.05)
 par(mfrow=c(1,1))
-with(res.k, plot(log2FoldChange, -log10(pvalue), pch=20, main="salmon Volcano plot", xlim=c(-3,3)))
+with(res.k, plot(log2FoldChange, -log10(pvalue), pch=20, main="kallist Volcano plot", xlim=c(-3,3)))
 with(subset(res.k, pvalue< 0.05 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="blue"))
 with(subset(res.k, padj<.05 & abs(log2FoldChange)>2), points(log2FoldChange, -log10(pvalue), pch=20, col="red"))
 legend(x=2,y=18,c("padj","pvalue"),cex=.8,col=c("red","blue"),pch=20)
